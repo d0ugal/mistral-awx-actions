@@ -12,7 +12,9 @@ class JobCreateAction(actions.Action):
         self.host = host
 
     def run(self, ctx):
-        with settings.runtime_values(username='user', password='pass'):
+        with settings.runtime_values(
+                username=self.username, password=self.password,
+                host=self.host):
             res = get_resource('job')
             job = res.launch(
                 job_template=self.job_template,
