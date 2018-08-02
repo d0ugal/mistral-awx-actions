@@ -14,7 +14,7 @@ class JobCreateAction(actions.Action):
     def run(self, ctx):
         with settings.runtime_values(
                 username=self.username, password=self.password,
-                host=self.host):
+                host=self.host, verify_ssl=False):
             res = get_resource('job')
             job = res.launch(
                 job_template=self.job_template,
